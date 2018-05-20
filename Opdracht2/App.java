@@ -1,5 +1,4 @@
-package Opdracht1;
-
+package Opdracht2;
 public class App {
 
     public static void main(String[] args) {
@@ -9,28 +8,42 @@ public class App {
         Student Gonzo = new Student(03, "Gonzo", 8, "m");
         Student Chef = new Student(04, "Swedish Chef", 35, "m");
         Student Piggy = new Student(05, "Miss Piggy", 28, "v");
-        //Stap 2 - Maak Stack aan
-        Stack stack = new Stack();
-        //Stap 3 - Voer pop() uit
-        stack.pop();
-        //Stap 4 - Print de stack
-        stack.printStack();
-        //Stap 5 - Print alle vrouwen in de stack
-        stack.printWomen();
-        //Stap 6 - Push studenten de stack op
-        stack.push(Janice);
-        stack.push(Kermit);
-        stack.push(Gonzo);
-        stack.push(Chef);
-        stack.push(Piggy);
-        //Stap 7 - Print alle mannelijke studenten
-        stack.printMen();
-        //Stap 8 - Print alle vrouwelijke studenten
-        stack.printWomen();
-        //Stap 9 - Push Kermit nogmaals op de stack
-        stack.push(Kermit);
-        //Stap 10 - Print de stack
-        stack.printStack();
+        //Stap 2 - Maak een Queue, List en SortedList
+        Queue q = new Queue();
+        List l = new List();
+        SortedList slM = new SortedList();
+        SortedList slV = new SortedList();
+        //Stap 3 - pop() alle datastructuren
+        q.pop();
+        l.pop(1);
+        slM.pop(1);
+        slV.pop(1);
+        //Stap 4 - Vul de Queue met Studenten
+        q.push(Kermit);
+        q.push(Janice);
+        q.push(Gonzo);
+        q.push(Piggy);
+        q.push(Chef);
+        //Stap 5 - Print de Queue
+        q.printQueue();
+        //Stap 6 - Laat de Queue leeg lopen -> Push naar de List & Push naar geslachts specifieke SortedList
+        for(int i = 0;i < q.size();i++){
+            Student s = q.pop();
+            String g = s.getGeslacht();
+            l.push(s,i);
+            if (g.equals("m") || g.equals("M")){
+                slM.push(s);
+            }else{
+                slV.push(s);
+            }
+        }
+        //Stap 7 - Print Queue, List en beide Sorted Lists
+        q.printQueue();
+        l.printList();
+        slM.printSortedList();
+        slV.printSortedList();
+
+
 
 
     }

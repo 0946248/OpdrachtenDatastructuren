@@ -1,5 +1,4 @@
-package Opdracht1;
-
+package Opdracht2;
 public class Student {
     private int studentnummer;
     private String naam;
