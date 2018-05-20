@@ -3,8 +3,7 @@ package Opdracht2;
 /**
  * De Klasse die de Studentengegevens bevat
  */
-public class Student
-{
+public class Student implements Cloneable {
 
     private int studentnummer;
     private String naam;
@@ -14,6 +13,10 @@ public class Student
      * De Volgende Student op de Stack
      */
     private Student next;
+    /**
+     * De Vorige Student op de Stack
+     */
+    private Student previous;
 
     /**
      * Constructor voor een volledige Student
@@ -23,17 +26,13 @@ public class Student
      * @param Leeftijd De leeftijd van de student
      * @param Geslacht Het geslacht van de student (Mag alleen v,V,m of M zijn)
      */
-    public Student(int nummer, String Naam, int Leeftijd, String Geslacht)
-    {
+    public Student(int nummer, String Naam, int Leeftijd, String Geslacht) {
         studentnummer = nummer;
         naam = Naam;
         leeftijd = Leeftijd;
-        if (Geslacht.equals("m") || Geslacht.equals("v") || Geslacht.equals("M") || Geslacht.equals("V"))
-        {
+        if (Geslacht.equals("m") || Geslacht.equals("v") || Geslacht.equals("M") || Geslacht.equals("V")) {
             geslacht = Geslacht;
-        }
-        else
-        {
+        } else {
             System.out.println("Verkeerde Input, probeer opnieuw");
         }
 
@@ -42,28 +41,43 @@ public class Student
     /**
      * Een Constructor voor een lege Student
      */
-    public Student()
-    {
+    public Student() {
     }
 
     /**
-     * Geef de volgende student op de stack
+     * Geef de volgende student
      *
-     * @return De volgende student op de stack
+     * @return De volgende student
      */
-    public Student getNext()
-    {
+    public Student getNext() {
         return next;
     }
 
     /**
-     * Geef aan welke student na deze student op de stack komt
+     * Geef aan welke student na deze student komt
      *
-     * @param next De volgende student op de stack
+     * @param next De volgende student
      */
-    public void setNext(Student next)
-    {
+    public void setNext(Student next) {
         this.next = next;
+    }
+
+    /**
+     * Geef de vorige student
+     *
+     * @return De vorige student
+     */
+    public Student getPrevious() {
+        return previous;
+    }
+
+    /**
+     * Geef aan welke student voor deze student komt
+     *
+     * @param previous De vorige student
+     */
+    public void setPrevious(Student previous) {
+        this.previous = previous;
     }
 
     /**
@@ -71,8 +85,7 @@ public class Student
      *
      * @return Het Studentnummer
      */
-    public int getStudentnummer()
-    {
+    public int getStudentnummer() {
         return studentnummer;
     }
 
@@ -81,8 +94,7 @@ public class Student
      *
      * @param studentnummer Het nieuwe studentnummer van de student
      */
-    public void setStudentnummer(int studentnummer)
-    {
+    public void setStudentnummer(int studentnummer) {
         this.studentnummer = studentnummer;
     }
 
@@ -91,8 +103,7 @@ public class Student
      *
      * @return De naam van de student
      */
-    public String getNaam()
-    {
+    public String getNaam() {
         return naam;
     }
 
@@ -101,8 +112,7 @@ public class Student
      *
      * @param naam De nieuwe naam van de student
      */
-    public void setNaam(String naam)
-    {
+    public void setNaam(String naam) {
         this.naam = naam;
     }
 
@@ -111,8 +121,7 @@ public class Student
      *
      * @return De leeftijd van de student
      */
-    public int getLeeftijd()
-    {
+    public int getLeeftijd() {
         return leeftijd;
     }
 
@@ -121,8 +130,7 @@ public class Student
      *
      * @param leeftijd De nieuwe leeftijd van de student
      */
-    public void setLeeftijd(int leeftijd)
-    {
+    public void setLeeftijd(int leeftijd) {
         this.leeftijd = leeftijd;
     }
 
@@ -131,8 +139,7 @@ public class Student
      *
      * @return Het geslacht van de student
      */
-    public String getGeslacht()
-    {
+    public String getGeslacht() {
         return geslacht;
     }
 
@@ -141,14 +148,10 @@ public class Student
      *
      * @param Geslacht Het geslacht van de student (Mag alleen m,v,V of M zijn)
      */
-    public void setGeslacht(String Geslacht)
-    {
-        if (Geslacht.equals("m") || Geslacht.equals("v") || Geslacht.equals("M") || Geslacht.equals("V"))
-        {
+    public void setGeslacht(String Geslacht) {
+        if (Geslacht.equals("m") || Geslacht.equals("v") || Geslacht.equals("M") || Geslacht.equals("V")) {
             geslacht = Geslacht;
-        }
-        else
-        {
+        } else {
             System.out.println("Verkeerde Input, probeer opnieuw");
         }
     }
@@ -156,8 +159,7 @@ public class Student
     /**
      * Print alle gegevens van de student
      */
-    public void printStudent()
-    {
+    public void printStudent() {
         System.out.println("Studentnummer:" + studentnummer);
         System.out.println("Naam:" + naam);
         System.out.println("Leeftijd:" + leeftijd);
@@ -169,10 +171,18 @@ public class Student
      *
      * @return Alle gegevens van de student in een string
      */
-    public String toString()
-    {
+    public String toString() {
         String info = studentnummer + ":" + naam + ":" + leeftijd + ":" + geslacht;
         return info;
+    }
+
+    /**
+     * Kloont het huidige object
+     * @return Kloon van het ojbect
+     * @throws CloneNotSupportedException Verplichte Exception voor de clone() methode
+     */
+    public Object clone() throws CloneNotSupportedException{
+        return super.clone();
     }
 
 }
